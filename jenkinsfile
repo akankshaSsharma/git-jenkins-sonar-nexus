@@ -35,5 +35,11 @@ node {
    stage('Results') {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
+   }stage('Publish to Nexus')
+   {
+       sh '''cd /var/jenkins_home/workspace/experiment/target 
+        rm -rf apidocs classes maven-archiver surefire-reports maven-status test-classes yoodle-5.0.0-javadoc.jar javadoc-bundle-options
+        rm -f maven-javadoc-plugin-stale-data.txt '''
    }
+   
 }
